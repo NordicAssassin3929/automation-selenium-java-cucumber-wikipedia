@@ -1,36 +1,26 @@
 package testcases;
 
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import pages.LoginPage;
-import propertyFileReader.ReadPropertyFile;
 
 import java.io.IOException;
 
 public class VerifyWikiLogin {
-    ReadPropertyFile propertyFile;
     LoginPage loginPage;
     WebDriver driver;
 
-    @BeforeMethod
+    @Before("@Test_1")
     public void setup() throws IOException {
-        propertyFile = new ReadPropertyFile();
-        System.out.println("Test started");
-        System.setProperty(propertyFile.getPropertiesKey(), propertyFile.getPropertiesValue());
-        driver = new FirefoxDriver();
-        driver.manage().window().maximize();
-        driver.get(propertyFile.getUrl());
+        loginPage = new LoginPage(driver);
     }
 
     @Given("^Open firefox, and locate to log in page$")
     public void Open_firefox_locate_to_log_in_page() throws Throwable {
-        setup();
-        loginPage = new LoginPage(driver);
         loginPage.allocateToLogIn();
     }
 
@@ -44,7 +34,7 @@ public class VerifyWikiLogin {
         loginPage.clickLogIn();
     }
 
-    @AfterMethod(alwaysRun = true)
+    @After("@Test_1")
     public void tearDown(){
         loginPage.closeDriver();
     }

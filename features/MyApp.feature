@@ -6,8 +6,7 @@ Feature: Test Wikipedia
     Then User should be able to log in successfully
   @Test_2
   Scenario: Test search functionality
-    Given Open firefox before searching functionality
-    When I enter term in search
+    Given I enter term in search
     Then User should get the page with term searched
   @Test_3
     Scenario: Change visual appearance of wikipedia

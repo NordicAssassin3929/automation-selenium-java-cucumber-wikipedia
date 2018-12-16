@@ -3,11 +3,15 @@ package pages;
 import optimize.Optimizer;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import propertyFileReader.ReadPropertyFile;
+import setup.Setup;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public class LoginPage {
+    Setup setup;
     Optimizer optimizer;
     WebDriver driver;
     ReadPropertyFile propertyFile;
@@ -17,9 +21,20 @@ public class LoginPage {
     By passwordElement = By.name("wpPassword");
     By login = By.id("wpLoginAttempt");
 
-    public LoginPage(WebDriver driver){
+    public LoginPage(WebDriver driver) throws IOException{
         this.driver = driver;
         optimizer = new Optimizer();
+        //setup = new Setup(driver);
+        setup();
+    }
+
+    public void setup() throws IOException{
+        propertyFile = new ReadPropertyFile();
+        System.out.println("Test started");
+        System.setProperty(propertyFile.getPropertiesKey(), propertyFile.getPropertiesValue());
+        driver = new FirefoxDriver();
+        driver.manage().window().maximize();
+        driver.get(propertyFile.getUrl());
     }
 
     // allocates to the log in button from homepage
@@ -39,6 +54,6 @@ public class LoginPage {
     }
 
     public void closeDriver(){
-        driver.close();
+        driver.quit();
     }
 }

@@ -1,12 +1,12 @@
 package testcases;
 
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import pages.DownloadPage;
 import propertyFileReader.ReadPropertyFile;
 
@@ -15,22 +15,14 @@ import java.io.IOException;
 public class VerifyPdfDownload {
     WebDriver driver;
     DownloadPage downloadPage;
-    ReadPropertyFile propertyFile;
 
-    @BeforeMethod
+    @Before("@Test_4")
     public void setup() throws IOException {
-        propertyFile = new ReadPropertyFile();
-        System.out.println("Test started");
-        System.setProperty(propertyFile.getPropertiesKey(), propertyFile.getPropertiesValue());
-        driver = new FirefoxDriver();
-        driver.manage().window().maximize();
-        driver.get(propertyFile.getUrl());
+        downloadPage = new DownloadPage(driver);
     }
 
     @Given("^Open firefox before coming to download$")
     public void Open_firefox() throws Throwable {
-        setup();
-        downloadPage = new DownloadPage(driver);
         downloadPage.logIn();
     }
 
@@ -49,7 +41,7 @@ public class VerifyPdfDownload {
         System.out.println("Success");
     }
 
-    @AfterMethod(alwaysRun = true)
+    @After("@Test_4")
     public void tearDown(){
         downloadPage.closeDriver();
     }

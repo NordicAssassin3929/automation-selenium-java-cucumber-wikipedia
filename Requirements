@@ -1,2 +1,2 @@
 Make tests applicable for all browsers
-Figure out why @AfterMethod isn't working
+Fix When User clicks on new skin - when there is no element

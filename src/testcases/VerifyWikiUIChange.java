@@ -1,5 +1,7 @@
 package testcases;
 
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -18,20 +20,13 @@ public class VerifyWikiUIChange {
     PreferencesPage page;
     ReadPropertyFile propertyFile;
 
-    @BeforeMethod
+    @Before("@Test_3")
     public void setup() throws IOException {
-        propertyFile = new ReadPropertyFile();
-        System.out.println("Test started");
-        System.setProperty(propertyFile.getPropertiesKey(), propertyFile.getPropertiesValue());
-        driver = new FirefoxDriver();
-        driver.manage().window().maximize();
-        driver.get(propertyFile.getUrl());
+        page = new PreferencesPage(driver);
     }
 
     @Given("^Open firefox before changing visual appearance$")
     public void Open_firefox() throws Throwable {
-        setup();
-        page = new PreferencesPage(driver);
     }
 
     @Given("^Log in as user$")
@@ -54,7 +49,7 @@ public class VerifyWikiUIChange {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
-    @AfterMethod(alwaysRun = true)
+    @After("@Test_3")
     public void tearDown(){
         page.closeDriver();
     }

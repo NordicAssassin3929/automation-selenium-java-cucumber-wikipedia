@@ -4,6 +4,7 @@ import optimize.Optimizer;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import propertyFileReader.ReadPropertyFile;
 
 import java.io.IOException;
@@ -17,9 +18,19 @@ public class PreferencesPage {
     By appearance = By.className("oo-ui-labelElement-label");
     By MinervaNeue = By.id("ooui-php-49");
 
-    public PreferencesPage(WebDriver driver){
+    public PreferencesPage(WebDriver driver) throws IOException{
         this.driver = driver;
         optimizer = new Optimizer();
+        setup();
+    }
+
+    public void setup() throws IOException {
+        propertyFile = new ReadPropertyFile();
+        System.out.println("Test started");
+        System.setProperty(propertyFile.getPropertiesKey(), propertyFile.getPropertiesValue());
+        driver = new FirefoxDriver();
+        driver.manage().window().maximize();
+        driver.get(propertyFile.getUrl());
     }
 
     public void logIn() throws IOException {
@@ -38,6 +49,6 @@ public class PreferencesPage {
     }
 
     public void closeDriver(){
-        driver.close();
+        driver.quit();
     }
 }

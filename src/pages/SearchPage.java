@@ -3,18 +3,36 @@ package pages;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import propertyFileReader.ReadPropertyFile;
+import setup.Setup;
+
+import java.io.IOException;
 
 public class SearchPage{
+    ReadPropertyFile propertyFile;
+    Setup setup;
     WebDriver driver;
     By searchBar = By.name("search");
     By searchButton = By.xpath("//button[@type='submit']");
 
-    public SearchPage(WebDriver driver){
+    public SearchPage(WebDriver driver) throws IOException{
         this.driver = driver;
+        //setup = new Setup(driver);
+        setup();
     }
 
-    public void enterSearch(String searchInput){
-        driver.findElement(searchBar).sendKeys(searchInput);
+    public void setup() throws IOException {
+        propertyFile = new ReadPropertyFile();
+        System.out.println("Test started");
+        System.setProperty(propertyFile.getPropertiesKey(), propertyFile.getPropertiesValue());
+        driver = new FirefoxDriver();
+        driver.manage().window().maximize();
+        driver.get(propertyFile.getUrl());
+    }
+
+    public void enterSearch(){
+        driver.findElement(searchBar).sendKeys(propertyFile.getSearchInput());
     }
 
     public void clickSearch(){
@@ -24,6 +42,6 @@ public class SearchPage{
     }
 
     public void closeDriver(){
-        driver.close();
+        driver.quit();
     }
 }

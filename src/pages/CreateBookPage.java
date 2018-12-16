@@ -4,6 +4,7 @@ import optimize.Optimizer;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import propertyFileReader.ReadPropertyFile;
 
@@ -29,9 +30,19 @@ public class CreateBookPage{
     By passwordElement = By.name("wpPassword");
     By login = By.id("wpLoginAttempt");
 
-    public CreateBookPage(WebDriver driver){
+    public CreateBookPage(WebDriver driver)throws IOException{
         this.driver = driver;
         optimizer = new Optimizer();
+        setup();
+    }
+
+    public void setup() throws IOException {
+        propertyFile = new ReadPropertyFile();
+        System.out.println("Test started");
+        System.setProperty(propertyFile.getPropertiesKey(), propertyFile.getPropertiesValue());
+        driver = new FirefoxDriver();
+        driver.manage().window().maximize();
+        driver.get(propertyFile.getUrl());
     }
 
     public void logIn() throws IOException {
@@ -64,6 +75,6 @@ public class CreateBookPage{
     }
 
     public void closeDriver(){
-        driver.close();
+        driver.quit();
     }
 }

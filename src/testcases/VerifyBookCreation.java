@@ -1,41 +1,31 @@
 package testcases;
 
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import pages.CreateBookPage;
-import propertyFileReader.ReadPropertyFile;
 
 import java.io.IOException;
 
 public class VerifyBookCreation{
     WebDriver driver;
     CreateBookPage createBookPage;
-    ReadPropertyFile propertyFile;
 
-    @BeforeMethod
+    @Before("@Test_5")
     public void setup() throws IOException {
-        propertyFile = new ReadPropertyFile();
-        System.out.println("Test started");
-        System.setProperty(propertyFile.getPropertiesKey(), propertyFile.getPropertiesValue());
-        driver = new FirefoxDriver();
-        driver.manage().window().maximize();
-        driver.get(propertyFile.getUrl());
+        createBookPage = new CreateBookPage(driver);
     }
 
     @Given("^Open firefox, and login$")
     public void Open_firefox_and_login() throws Throwable {
-        setup();
-        createBookPage = new CreateBookPage(driver);
-        createBookPage.logIn();
     }
 
     @Given("^Create a book and start book creator$")
     public void Create_a_book_and_start_book_creator() throws Throwable {
+        createBookPage.logIn();
         createBookPage.createBook();
     }
 
@@ -53,7 +43,7 @@ public class VerifyBookCreation{
     public void Chapter_is_created_successfully() throws Throwable {
     }
 
-    @AfterMethod(alwaysRun = true)
+    @After("@Test_5")
     public void tearDown(){
         createBookPage.closeDriver();
     }
