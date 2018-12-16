@@ -8,6 +8,7 @@ public class ReadPropertyFile {
 
     protected Properties properties;
     protected InputStream input = ReadPropertyFile.class.getClassLoader().getResourceAsStream("data/config.properties");
+
     public ReadPropertyFile() throws IOException{
         properties = new Properties();
         properties.load(input);

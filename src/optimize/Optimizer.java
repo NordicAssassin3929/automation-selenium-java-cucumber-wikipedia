@@ -4,18 +4,16 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import propertyFileReader.ReadPropertyFile;
-
 import java.io.IOException;
-
 
 public class Optimizer {
 
     // login
-    By englishArticles = By.id("js-link-box-en");
-    By LogInButton = By.id("pt-login");
-    By usernameElement = By.name("wpName");
-    By passwordElement = By.name("wpPassword");
-    By login = By.id("wpLoginAttempt");
+    private By englishArticles = By.id("js-link-box-en");
+    private By LogInButton = By.id("pt-login");
+    private By usernameElement = By.name("wpName");
+    private By passwordElement = By.name("wpPassword");
+    private By login = By.id("wpLoginAttempt");
 
     public void sendKeysAndAssert(WebDriver driver, By element, String propertyValue, String message){
         driver.findElement(element).sendKeys(propertyValue);

@@ -1,2 +1,4 @@
-Make tests applicable for all browsers
+Make tests applicable for all browsers, user should have possibility to change browser in configuration file
 Fix When User clicks on new skin - when there is no element
+Set wait time for tester to see difference
+Figure out duplicate test definitions

@@ -6,22 +6,20 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import pages.DownloadPage;
-import propertyFileReader.ReadPropertyFile;
 
 import java.io.IOException;
 
 public class VerifyPdfDownload {
-    WebDriver driver;
-    DownloadPage downloadPage;
+    private WebDriver driver;
+    private DownloadPage downloadPage;
 
     @Before("@Test_4")
     public void setup() throws IOException {
         downloadPage = new DownloadPage(driver);
     }
 
-    @Given("^Open firefox before coming to download$")
+    @Given("^Log in$")
     public void Open_firefox() throws Throwable {
         downloadPage.logIn();
     }

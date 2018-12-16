@@ -7,15 +7,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import propertyFileReader.ReadPropertyFile;
-
 import java.io.IOException;
 
 public class DownloadPage {
-    Optimizer optimizer;
-    ReadPropertyFile propertyFile;
-    WebDriver driver;
-    By downloadAsPdf = By.id("coll-download-as-rdf2latex");
-    By downloadButton = By.xpath("/html/body/div[3]/div[3]/div[3]/form/div/span/span/button");
+    private Optimizer optimizer;
+    private ReadPropertyFile propertyFile;
+    private WebDriver driver;
+    private By downloadAsPdf = By.id("coll-download-as-rdf2latex");
+    private By downloadButton = By.xpath("/html/body/div[3]/div[3]/div[3]/form/div/span/span/button");
 
     public DownloadPage(WebDriver driver) throws IOException{
         this.driver = driver;

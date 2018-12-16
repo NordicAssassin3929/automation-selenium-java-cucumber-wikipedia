@@ -7,28 +7,27 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import propertyFileReader.ReadPropertyFile;
-
 import java.io.IOException;
 
 public class CreateBookPage{
-    Optimizer optimizer;
-    ReadPropertyFile propertyFile;
-    WebDriver driver;
-    By createBook = By.id("coll-create_a_book");
-    By bookCreator = By.xpath("/html/body/div[3]/div[3]/div[3]/form/span/span[1]/button");
-    By search = By.name("search");
-    By addPageToBook = By.xpath("//*[@id=\"coll-add_article\"]");
-    By showBook = By.xpath("/html/body/div[3]/div[1]/div[2]/div[2]/div/div[2]/a[2]");
-    By bookTitle = By.id("titleInput");
-    By bookSubtitle = By.id("subtitleInput");
-    By createChapter = By.xpath("/html/body/div[3]/div[3]/div[3]/div[3]/div[1]/div[1]/a[1]");
+    private Optimizer optimizer;
+    private ReadPropertyFile propertyFile;
+    private WebDriver driver;
+    private By createBook = By.id("coll-create_a_book");
+    private By bookCreator = By.xpath("/html/body/div[3]/div[3]/div[3]/form/span/span[1]/button");
+    private By search = By.name("search");
+    private By addPageToBook = By.xpath("//*[@id=\"coll-add_article\"]");
+    private By showBook = By.xpath("/html/body/div[3]/div[1]/div[2]/div[2]/div/div[2]/a[2]");
+    private By bookTitle = By.id("titleInput");
+    private By bookSubtitle = By.id("subtitleInput");
+    private By createChapter = By.xpath("/html/body/div[3]/div[3]/div[3]/div[3]/div[1]/div[1]/a[1]");
 
     // login
-    By englishArticles = By.id("js-link-box-en");
-    By LogInButton = By.id("pt-login");
-    By usernameElement = By.name("wpName");
-    By passwordElement = By.name("wpPassword");
-    By login = By.id("wpLoginAttempt");
+    private By englishArticles = By.id("js-link-box-en");
+    private By LogInButton = By.id("pt-login");
+    private By usernameElement = By.name("wpName");
+    private By passwordElement = By.name("wpPassword");
+    private By login = By.id("wpLoginAttempt");
 
     public CreateBookPage(WebDriver driver)throws IOException{
         this.driver = driver;

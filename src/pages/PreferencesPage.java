@@ -6,17 +6,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import propertyFileReader.ReadPropertyFile;
-
 import java.io.IOException;
 
 public class PreferencesPage {
-    Optimizer optimizer;
-    WebDriver driver;
-    ReadPropertyFile propertyFile;
-    By alert = By.xpath("//*[@id=\"pt-notifications-alert\"]");
-    By preferences = By.xpath("/html/body/div[8]/div[4]/div[1]/div[3]/div/span/span[2]/a");
-    By appearance = By.className("oo-ui-labelElement-label");
-    By MinervaNeue = By.id("ooui-php-49");
+    private Optimizer optimizer;
+    private WebDriver driver;
+    private ReadPropertyFile propertyFile;
+    private By alert = By.xpath("//*[@id=\"pt-notifications-alert\"]");
+    private By preferences = By.xpath("/html/body/div[8]/div[4]/div[1]/div[3]/div/span/span[2]/a");
+    private By appearance = By.className("oo-ui-labelElement-label");
+    private By MinervaNeue = By.id("ooui-php-49");
 
     public PreferencesPage(WebDriver driver) throws IOException{
         this.driver = driver;

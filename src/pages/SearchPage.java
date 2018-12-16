@@ -5,20 +5,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import propertyFileReader.ReadPropertyFile;
-import setup.Setup;
-
 import java.io.IOException;
 
 public class SearchPage{
-    ReadPropertyFile propertyFile;
-    Setup setup;
-    WebDriver driver;
-    By searchBar = By.name("search");
-    By searchButton = By.xpath("//button[@type='submit']");
+    private ReadPropertyFile propertyFile;
+    private WebDriver driver;
+    private By searchBar = By.name("search");
+    private By searchButton = By.xpath("//button[@type='submit']");
 
     public SearchPage(WebDriver driver) throws IOException{
         this.driver = driver;
-        //setup = new Setup(driver);
         setup();
     }
 

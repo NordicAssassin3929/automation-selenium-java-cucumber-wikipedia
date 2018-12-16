@@ -7,25 +7,24 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
 import pages.CreateBookPage;
-
 import java.io.IOException;
 
 public class VerifyBookCreation{
-    WebDriver driver;
-    CreateBookPage createBookPage;
+    private WebDriver driver;
+    private CreateBookPage createBookPage;
 
     @Before("@Test_5")
     public void setup() throws IOException {
         createBookPage = new CreateBookPage(driver);
     }
 
-    @Given("^Open firefox, and login$")
-    public void Open_firefox_and_login() throws Throwable {
+    @Given("^Log in wiki$")
+    public void login() throws Throwable {
+        createBookPage.logIn();
     }
 
     @Given("^Create a book and start book creator$")
     public void Create_a_book_and_start_book_creator() throws Throwable {
-        createBookPage.logIn();
         createBookPage.createBook();
     }
 
