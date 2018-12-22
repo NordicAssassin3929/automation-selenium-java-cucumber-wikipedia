@@ -1,4 +1,4 @@
-package pages;
+package pageObjects;
 
 import optimize.Optimizer;
 import org.junit.Assert;
@@ -19,7 +19,7 @@ public class DownloadPage {
     public DownloadPage(WebDriver driver) throws IOException{
         this.driver = driver;
         optimizer = new Optimizer();
-        setup();
+        //setup();
     }
 
     public void setup() throws IOException {

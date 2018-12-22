@@ -6,7 +6,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
-import pages.CreateBookPage;
+import pageObjects.CreateBookPage;
 import java.io.IOException;
 
 public class VerifyBookCreation{

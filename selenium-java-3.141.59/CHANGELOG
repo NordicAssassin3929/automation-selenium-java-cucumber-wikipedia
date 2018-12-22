@@ -763,7 +763,7 @@ WebDriver:
     * Moving IE specific test to IE test suite
     * Firefox: throwing proper exception on an attempt to find an element in the deleted frame
     * Firefox: changing getCurrentUrl to return top level browsing context address (to conform to the standard)
-    * Firefox: fixing page source for plain text pages
+    * Firefox: fixing page source for plain text pageObjects
     * Adding information on the reasons to ignore tests
     * fix the client and server classpath
     * Move the servlet-api package for easier automated updates.
@@ -831,7 +831,7 @@ WebDriver:
 * Make it possible for users to override how the Lock is obtained with Firefox.
 * (provided by Ahmed Ashour) Added implementation of Alert for HtmlUnit driver.
 * (provided by Ahmed Ashour) Fixed findElementByXPath for HtmlUnit driver to
-  work for XML pages.
+  work for XML pageObjects.
 * (provided by Ahmed Ashour) Fixed HtmlUnit driver to allow for manipulating
   elements in SVG documents.
 * (provided by Ahmed Ashour) Fixed HtmlUnit driver so that deleteAllCookies
@@ -1540,7 +1540,7 @@ WebDriver:
     requested feature, throw an UnsupportedCommandException instead of
     a ClassCastException.
   * Implemented elementScrollBehavior capability in FirefoxDriver.
-  * Fixed getLocation to work on scrolled pages.
+  * Fixed getLocation to work on scrolled pageObjects.
   * Fixed autoscrolling for elements located in frames.
   * Fixed drag-n-drop for elements in frames in Firefox with native
     events
@@ -2071,7 +2071,7 @@ WebDriver:
     capability.
   * FIXED: 1089: Style attributes are no longer lower-cased by default.
   * FIXED: 1934: Firefox cleans up temporary directories more effectively.
-  * FIXED: 3647: WebElement.sendKeys now works in Firefox on XHTML pages.
+  * FIXED: 3647: WebElement.sendKeys now works in Firefox on XHTML pageObjects.
   * FIXED: 3758: Maximize windows from inside a frame works as expected.
   * FIXED: 3825: Alerts from a nested iframe are now handled properly.
 

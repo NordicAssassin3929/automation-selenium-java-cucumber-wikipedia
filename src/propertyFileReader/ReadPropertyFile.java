@@ -14,6 +14,8 @@ public class ReadPropertyFile {
         properties.load(input);
     }
 
+    public String getBrowser(){ return properties.getProperty("browser"); }
+
     public String getUsername(){
         return properties.getProperty("username");
     }

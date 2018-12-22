@@ -1,20 +1,29 @@
 package testcases;
 
+import BrowserFactory.BrowserFactory;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import org.openqa.selenium.WebDriver;
-import pages.SearchPage;
+import org.openqa.selenium.support.PageFactory;
+import pageObjects.SearchPage;
+import propertyFileReader.ReadPropertyFile;
+
 import java.io.IOException;
 
 public class VerifyWikiSearch {
     private SearchPage searchPage;
-    private WebDriver driver;
+    ReadPropertyFile propertyFile;
+    BrowserFactory browserFactory;
 
     @Before("@Test_2")
     public void setup() throws IOException {
-        searchPage = new SearchPage(driver);
+        propertyFile = new ReadPropertyFile();
+        String url = propertyFile.getUrl();
+        String browser = propertyFile.getBrowser();
+        WebDriver driver = browserFactory.startBrowser(browser, url);
+        searchPage = PageFactory.initElements(driver, SearchPage.class);
     }
 
     @Given("^I enter term in search$")

@@ -1,10 +1,12 @@
-package pages;
+package pageObjects;
 
 import optimize.Optimizer;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import propertyFileReader.ReadPropertyFile;
 import java.io.IOException;
@@ -23,11 +25,20 @@ public class CreateBookPage{
     private By createChapter = By.xpath("/html/body/div[3]/div[3]/div[3]/div[3]/div[1]/div[1]/a[1]");
 
     // login
-    private By englishArticles = By.id("js-link-box-en");
-    private By LogInButton = By.id("pt-login");
-    private By usernameElement = By.name("wpName");
-    private By passwordElement = By.name("wpPassword");
-    private By login = By.id("wpLoginAttempt");
+    @FindBy(id = "js-link-box-en")
+    private WebElement englishArticles;
+
+    @FindBy(id = "pt-login")
+    private WebElement LogInButton;
+
+    @FindBy(name = "wpName")
+    private WebElement usernameElement;
+
+    @FindBy(name = "wpPassword")
+    private WebElement passwordElement;
+
+    @FindBy(id = "wpLoginAttempt")
+    private WebElement login;
 
     public CreateBookPage(WebDriver driver)throws IOException{
         this.driver = driver;
@@ -46,11 +57,11 @@ public class CreateBookPage{
 
     public void logIn() throws IOException {
         propertyFile = new ReadPropertyFile();
-        driver.findElement(englishArticles).click();
-        driver.findElement(LogInButton).click();
+        englishArticles.click();
+        LogInButton.click();
         optimizer.sendKeysAndAssert(driver, usernameElement, propertyFile.getUsername(), "Wrong username");
         optimizer.sendKeysAndAssert(driver, passwordElement, propertyFile.getPassword(), "Wrong password");
-        driver.findElement(login).click();
+        login.click();
     }
 
     public void createBook(){
