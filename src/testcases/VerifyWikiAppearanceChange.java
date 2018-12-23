@@ -6,7 +6,6 @@ import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import optimize.Optimizer;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import pageObjects.AppearancePage;
@@ -31,7 +30,6 @@ public class VerifyWikiAppearanceChange {
 
     @Given("^Log in as user$")
     public void Log_in_as_user() throws Throwable {
-        //optimizer.loginToWiki(driver, propertyFile);
         page.logIn();
     }
 

@@ -1,6 +1,5 @@
 package pageObjects;
 
-import optimize.Optimizer;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,7 +7,6 @@ import propertyFileReader.ReadPropertyFile;
 import java.io.IOException;
 
 public class LoginPage {
-    private Optimizer optimizer;
     private WebDriver driver;
     private ReadPropertyFile propertyFile;
 
@@ -36,7 +34,6 @@ public class LoginPage {
      */
     public LoginPage(WebDriver driver) throws IOException{
         this.driver = driver;
-        optimizer = new Optimizer();
     }
 
     // allocates to the log in button from homepage
@@ -47,8 +44,8 @@ public class LoginPage {
 
     public void enterCredentials() throws IOException {
         propertyFile = new ReadPropertyFile();
-        optimizer.sendKeysAndAssert(driver, usernameElement, propertyFile.getUsername(), "Wrong username");
-        optimizer.sendKeysAndAssert(driver, passwordElement, propertyFile.getPassword(), "Wrong password");
+        //optimizer.sendKeysAndAssert(driver, usernameElement, propertyFile.getUsername(), "Wrong username");
+        //optimizer.sendKeysAndAssert(driver, passwordElement, propertyFile.getPassword(), "Wrong password");
     }
 
     public void clickLogIn(){

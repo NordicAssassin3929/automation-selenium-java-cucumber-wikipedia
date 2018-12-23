@@ -7,7 +7,6 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import pageObjects.LoginPage;
 import propertyFileReader.ReadPropertyFile;
@@ -23,8 +22,8 @@ import java.io.IOException;
      */
 public class VerifyWikiLogin {
     private LoginPage loginPage;
-    BrowserFactory browserFactory;
-    ReadPropertyFile propertyFile;
+    private BrowserFactory browserFactory;
+    private ReadPropertyFile propertyFile;
 
     @Before("@Test_1")
     public void setup() throws IOException {

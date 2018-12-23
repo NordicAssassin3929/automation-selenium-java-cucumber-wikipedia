@@ -1,21 +1,32 @@
 package testcases;
 
+import BrowserFactory.BrowserFactory;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 import pageObjects.CreateBookPage;
+import pageObjects.DownloadPage;
+import propertyFileReader.ReadPropertyFile;
+
 import java.io.IOException;
 
 public class VerifyBookCreation{
     private WebDriver driver;
     private CreateBookPage createBookPage;
+    private BrowserFactory browserFactory;
+    private ReadPropertyFile propertyFile;
 
     @Before("@Test_5")
     public void setup() throws IOException {
-        createBookPage = new CreateBookPage(driver);
+        propertyFile = new ReadPropertyFile();
+        String url = propertyFile.getUrl();
+        String browser = propertyFile.getBrowser();
+        WebDriver driver = browserFactory.startBrowser(browser, url);
+        createBookPage = PageFactory.initElements(driver, CreateBookPage.class);
     }
 
     @Given("^Log in wiki$")

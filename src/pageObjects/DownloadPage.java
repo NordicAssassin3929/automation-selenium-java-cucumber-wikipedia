@@ -1,46 +1,61 @@
 package pageObjects;
 
-import optimize.Optimizer;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import propertyFileReader.ReadPropertyFile;
 import java.io.IOException;
 
 public class DownloadPage {
-    private Optimizer optimizer;
     private ReadPropertyFile propertyFile;
     private WebDriver driver;
-    private By downloadAsPdf = By.id("coll-download-as-rdf2latex");
-    private By downloadButton = By.xpath("/html/body/div[3]/div[3]/div[3]/form/div/span/span/button");
+
+    @FindBy(id = "coll-download-as-rdf2latex")
+    private WebElement downloadAsPdf;
+
+    @FindBy(xpath = "/html/body/div[3]/div[3]/div[3]/form/div/span/span/button")
+    private WebElement downloadButton;
+
+    @FindBy(id = "js-link-box-en")
+    private WebElement englishArticles;
+
+    @FindBy(id = "pt-login")
+    private WebElement LogInButton;
+
+    @FindBy(name = "wpName")
+    private WebElement usernameElement;
+
+    @FindBy(name = "wpPassword")
+    private WebElement passwordElement;
+
+    @FindBy(id = "wpLoginAttempt")
+    private WebElement login;
 
     public DownloadPage(WebDriver driver) throws IOException{
         this.driver = driver;
-        optimizer = new Optimizer();
-        //setup();
-    }
-
-    public void setup() throws IOException {
-        propertyFile = new ReadPropertyFile();
-        System.out.println("Test started");
-        System.setProperty(propertyFile.getPropertiesKey(), propertyFile.getPropertiesValue());
-        driver = new FirefoxDriver();
-        driver.manage().window().maximize();
-        driver.get(propertyFile.getUrl());
     }
 
     public void logIn() throws IOException {
-        optimizer.loginToWiki(driver, propertyFile);
+        propertyFile = new ReadPropertyFile();
+        englishArticles.click();
+        LogInButton.click();
+        //sendKeysAndAssert(driver, usernameElement, propertyFile.getUsername(), "Wrong username");
+        //sendKeysAndAssert(driver, passwordElement, propertyFile.getPassword(), "Wrong password");
+        usernameElement.sendKeys(propertyFile.getUsername());
+        passwordElement.sendKeys(propertyFile.getPassword());
+        login.click();
     }
 
     public void DownloadAsPdf(){
-        driver.findElement(downloadAsPdf).click();
+        downloadAsPdf.click();
     }
 
     public void DownloadButton(){
-        driver.findElement(downloadButton).click();
+        downloadButton.click();
         Assert.assertTrue("Nothing could be downloaded", ExpectedConditions.alertIsPresent() != null);
     }
 
